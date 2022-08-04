@@ -1,3 +1,22 @@
-<p>
-  sign-in works!
-</p>
+<form [formGroup]="signInValues" (submit)="onSubmit()">
+
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="text" color="primary" formControlName="email">
+    <button *ngIf="getFControl('email')" matSuffix mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="text" color="primary" formControlName="password">
+    <button *ngIf="getFControl('password')" matSuffix mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit">Sign in</button>
+</form>
+<div class="sign-up-btn">
+  <button mat-raised-button (click)="signUp()" class="signup-btn">Sign up</button>
+</div>

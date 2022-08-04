@@ -1,3 +1,37 @@
-<p>
-  sign-up works!
-</p>
+<form [formGroup]="signUpValues" class="form-group">
+  <app-input-field 
+    [fControl]="getFControl('name')" 
+    [name]="'Name'">
+  </app-input-field>
+
+  <app-input-field 
+    [fControl]="getFControl('lastName')" 
+    [name]="'Last Name'">
+  </app-input-field>
+
+  <app-input-field 
+    [fControl]="getFControl('username')" 
+    [name]="'Username'">
+  </app-input-field>
+
+  <app-input-field 
+    [fControl]="getFControl('email')" 
+    [name]="'Email'">
+  </app-input-field>
+
+  <app-input-field 
+    [fControl]="getFControl('password')" 
+    [name]="'Password'">
+  </app-input-field>
+
+  <button mat-raised-button color="primary" class="regular-btn main-btn"
+    (click)="onSignUp()">
+    Sign Up
+  </button>
+  <button mat-raised-button class="regular-btn"
+    [routerLink]="'/sign-in'">
+    Sign In
+  </button>
+
+</form>
+

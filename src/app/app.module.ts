@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,8 +15,8 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    LoadingBarModule
+    LoadingBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
