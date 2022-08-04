@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../../shared/services/user.service';
 
@@ -13,8 +13,6 @@ export class SignInComponent implements OnInit {
 
   signInValues = this.fb.group({
     email: ['', [Validators.email, Validators.required, Validators.maxLength(32)]],
-    // name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
-    // lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
     password: ['', [Validators.required]]
   })
 
@@ -31,7 +29,7 @@ export class SignInComponent implements OnInit {
   }
 
   getFControl(value: string) {
-    return this.signInValues.get(value)?.value
+    return this.signInValues.get(value) as FormControl;
   }
 
   onSubmit(): void {
@@ -45,10 +43,6 @@ export class SignInComponent implements OnInit {
       }
     );
     console.log(this.signInValues.getRawValue());
-  }
-
-  signUp(): void{
-    this.router.navigateByUrl('/sign-up')
   }
 
 }

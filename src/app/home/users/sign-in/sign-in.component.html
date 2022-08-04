@@ -1,22 +1,22 @@
-<form [formGroup]="signInValues" (submit)="onSubmit()">
+<form [formGroup]="signInValues" class="form-group">
+  <app-input-field 
+    [fControl]="getFControl('email')" 
+    [name]="'Email'">
+  </app-input-field>
 
-  <mat-form-field class="example-form-field" appearance="fill">
-    <mat-label>Email</mat-label>
-    <input matInput type="text" color="primary" formControlName="email">
-    <button *ngIf="getFControl('email')" matSuffix mat-icon-button>
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-  <mat-form-field class="example-form-field" appearance="fill">
-    <mat-label>Password</mat-label>
-    <input matInput type="text" color="primary" formControlName="password">
-    <button *ngIf="getFControl('password')" matSuffix mat-icon-button>
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+  <app-input-field 
+    [fControl]="getFControl('password')" 
+    [name]="'Password'">
+  </app-input-field>
 
-  <button mat-raised-button type="submit">Sign in</button>
+  <button mat-raised-button color="primary" class="regular-btn main-btn"
+    (click)="onSubmit()">
+    Sign In
+  </button>
+  <button mat-raised-button class="regular-btn"
+    [routerLink]="'/sign-up'">
+    Sign Up
+  </button>
+
 </form>
-<div class="sign-up-btn">
-  <button mat-raised-button (click)="signUp()" class="signup-btn">Sign up</button>
-</div>
+
