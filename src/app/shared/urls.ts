@@ -1,6 +1,7 @@
 import { environment } from "../../environments/environment"
 
-const prefix = 'http://' + environment.server + ':3000'
+// const prefix = 'http://' + environment.server + ':3000'
+const prefix = '/api'
 
 export const URLS = {
     // users
