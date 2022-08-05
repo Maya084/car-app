@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { isEmpty } from 'lodash';
+import { LOCAL_STORAGE } from '../consts';
 import { ISignIn, ISignUp, IUser } from '../interfaces';
 import { URLS } from '../urls';
 import { AlertService } from './alert.service';
@@ -11,23 +12,25 @@ import { AlertService } from './alert.service';
 })
 export class UserService {
 
-  isSignedIn = false;
   user!: IUser;
+  isLoggedIn!: boolean;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private alert: AlertService
-  ) { }
+  ) {
+    this.user = localStorage.getItem(LOCAL_STORAGE.USER_INFO) || {} as any;
+    this.isLoggedIn = localStorage.getItem(LOCAL_STORAGE.IS_LOGGED_IN) === 'true';
+  }
 
   signIn(signInData: ISignIn): void {
     this.http.post(URLS.SIGN_IN, signInData).subscribe({
-      next: (data: any) => {
-        this.user = data;
+      next: (userInfo: any) => {
         this.alert.openSnackBar({
           message: 'Successfully signed in!',
         });
-        this.signInAndChangeRoute();
+        this.signInAndChangeRoute(userInfo);
       },
       error: () => {
         this.alert.openSnackBar({
@@ -39,18 +42,22 @@ export class UserService {
   }
 
   signUp(signUpData: ISignUp) {
-    return this.http.post(URLS.SIGN_UP, signUpData);
-  }
-
-  signInAndChangeRoute(): void {
-    this.isSignedIn = true;
-    this.router.navigateByUrl('/reports');
-  }
-
-  signOutAndChangeRoute(): void {
-    this.isSignedIn = false;
-    this.user = {} as any;
-    this.router.navigateByUrl('/users/sign-in');
+    this.http.post(URLS.SIGN_UP, signUpData).subscribe(
+      {
+        next: () => {
+          this.alert.openSnackBar({
+            message: 'Successfull account creation!'
+          });
+          this.router.navigateByUrl('/auth/sign-in')
+        },
+        error: () => {
+          this.alert.openSnackBar({
+            message: 'An error occured!',
+            status: 'error'
+          });
+        }
+      }
+    );
   }
 
   signOut() {
@@ -65,27 +72,26 @@ export class UserService {
       })
   }
 
-  async checkSignedIn() {
-    this.http.get(URLS.WHO_AM_I).subscribe(
-      {
-        next: (data: any) => {
-          this.user = data;
-          this.helperSignedIn();
-        },
-        error: () => { },
-      })
-
+  checkLoggedIn(): void {
+    if (this.isLoggedIn) {
+      this.router.navigateByUrl('/home/reports')
+    }
   }
 
-  helperSignedIn(): void {
-    this.isSignedIn = !isEmpty(this.user);
+  signInAndChangeRoute(userInfo: any): void {
+    this.user = userInfo;
+    this.isLoggedIn = true;
+    localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'true');
+    localStorage.setItem(LOCAL_STORAGE.USER_INFO, userInfo);
+    this.router.navigateByUrl('/home/reports');
+  }
 
-    if (this.isSignedIn) {
-      this.router.navigateByUrl('/reports');
-      return;
-    }
-
-    this.router.navigateByUrl('/users/sign-in');
+  signOutAndChangeRoute(): void {
+    this.user = {} as any;
+    this.isLoggedIn = false;
+    localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'false');
+    localStorage.setItem(LOCAL_STORAGE.USER_INFO, '');
+    this.router.navigateByUrl('/auth/sign-in');
   }
 
 }

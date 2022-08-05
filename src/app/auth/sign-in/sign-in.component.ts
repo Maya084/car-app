@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserService } from '../../../shared/services/user.service';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,15 +18,11 @@ export class SignInComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
-  ) { 
-    this.userService.checkSignedIn();
+  ) {
+    this.userService.checkLoggedIn();
   }
 
   ngOnInit() {
-    if (this.userService.isSignedIn) {
-      this.router.navigateByUrl('/reports');
-    }
   }
 
   getFControl(value: string) {
@@ -38,7 +33,6 @@ export class SignInComponent implements OnInit {
     if (this.signInValues.invalid) {
       return;
     }
-
     this.userService.signIn(this.signInValues.getRawValue());
   }
 

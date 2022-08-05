@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { UserService } from '../../../shared/services/user.service';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,11 +20,12 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+  ) {
+    this.userService.checkLoggedIn();
+  }
 
   ngOnInit() {
-    this.userService.checkSignedIn();
   }
 
   onSignUp(): void {
@@ -32,9 +33,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.userService.signUp(this.signUpValues.getRawValue()).subscribe(data => {
-
-    });
+    this.userService.signUp(this.signUpValues.getRawValue());
   }
 
   getFControl(value: string) {
