@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { UsersComponent } from './list-users/users.component';
+import { ListUsersComponent } from './list-users/list-users.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { UsersComponent } from './users.component';
 
 @NgModule({
   imports: [
@@ -11,9 +12,10 @@ import { SharedModule } from '../../shared/shared.module';
     SharedModule
   ],
   declarations: [
-    UsersComponent,
+    ListUsersComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    UsersComponent
   ]
 })
 export class UsersModule { }

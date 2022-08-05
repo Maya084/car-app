@@ -50,7 +50,7 @@ export class UserService {
   signOutAndChangeRoute(): void {
     this.isSignedIn = false;
     this.user = {} as any;
-    this.router.navigateByUrl('/sign-in');
+    this.router.navigateByUrl('/users/sign-in');
   }
 
   signOut() {
@@ -85,7 +85,7 @@ export class UserService {
       return;
     }
 
-    this.router.navigateByUrl('/sign-in');
+    this.router.navigateByUrl('/users/sign-in');
   }
 
 }
