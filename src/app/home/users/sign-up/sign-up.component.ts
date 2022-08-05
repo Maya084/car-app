@@ -24,6 +24,7 @@ export class SignUpComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userService.checkSignedIn();
   }
 
   onSignUp(): void {
@@ -31,9 +32,8 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.userService.signUp(this.signUpValues.getRawValue()).subscribe(data=>{
-      console.log(data);
-      
+    this.userService.signUp(this.signUpValues.getRawValue()).subscribe(data => {
+
     });
   }
 

@@ -37,12 +37,7 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    this.userService.signIn(this.signInValues.getRawValue()).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
-    console.log(this.signInValues.getRawValue());
+    this.userService.signIn(this.signInValues.getRawValue());
   }
 
 }

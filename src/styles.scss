@@ -25,7 +25,29 @@ body {
   width: 100%;
 }
 
-button.regular-btn{
+button.regular-btn {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.snackbar-success {
+  background-color: #009944;
+  color: #fff;
+}
+
+.snackbar-error {
+  background-color: #cf000f;
+  color: #fff;
+}
+
+html,
+body,
+.app,
+app-root,
+app-home {
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+  color: #e0e0e0;
 }

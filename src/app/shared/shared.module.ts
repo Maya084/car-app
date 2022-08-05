@@ -6,7 +6,7 @@ import { MaterialModule } from "../material.module";
 import { InputFieldComponent } from "./components/input-field/input-field.component";
 
 const compDec = [
-    InputFieldComponent
+    InputFieldComponent,
 ]
 
 const modDec = [
@@ -20,7 +20,10 @@ const modDec = [
 @NgModule({
     imports: modDec,
     declarations: compDec,
-    exports: [...compDec, ...modDec],
+    exports: [
+        ...compDec, 
+        ...modDec,
+    ],
 })
 
 export class SharedModule {

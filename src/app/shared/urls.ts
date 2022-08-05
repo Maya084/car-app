@@ -5,7 +5,7 @@ export const URLS = {
     WHO_AM_I: prefix + '/auth/whoami',
     SIGN_UP: prefix + '/auth/signup',
     SIGN_IN: prefix + '/auth/signin',
-    SIGN_OUT: prefix + '/auth/singout',
+    SIGN_OUT: prefix + '/auth/signout',
     AUTH: prefix + '/auth',
 
     //reports
