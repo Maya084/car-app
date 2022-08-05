@@ -20,7 +20,9 @@ export class SignInComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) { 
+    this.userService.checkSignedIn();
+  }
 
   ngOnInit() {
     if (this.userService.isSignedIn) {
