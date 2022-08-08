@@ -1,6 +1,11 @@
 <mat-form-field class="example-form-field" appearance="fill">
   <mat-label>{{name}}</mat-label>
-  <input matInput type="text" color="primary" [formControl]="fControl">
+  <input matInput [type]="formControlType" color="primary" [formControl]="fControl">
+  <button 
+    *ngIf="type==='password'" matSuffix mat-icon-button 
+    (click)="visibility = !visibility">
+    <mat-icon>{{visibility?'visibility' :'visibility_off'}}</mat-icon>
+  </button>
   <button *ngIf="fControl.value || ''" matSuffix mat-icon-button (click)="clearControl()">
     <mat-icon>close</mat-icon>
   </button>

@@ -11,8 +11,19 @@ export class InputFieldComponent implements OnInit {
 
   @Input() fControl!: FormControl;
   @Input() name!: string;
+  @Input() type: 'text' | 'password' | 'number' = 'text';
+
+  visibility = false;
 
   constructor() { }
+
+  get formControlType(): 'text' | 'password' | 'number' {
+    return this.type === 'number' || this.type === 'text'
+      ? this.type
+      : this.visibility
+        ? 'text'
+        : 'password'
+  }
 
   ngOnInit() {
   }

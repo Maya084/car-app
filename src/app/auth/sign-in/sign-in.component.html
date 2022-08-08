@@ -1,12 +1,15 @@
 <form [formGroup]="signInValues" class="form-group">
   <app-input-field 
     [fControl]="getFControl('email')" 
-    [name]="'Email'">
+    [name]="'Email'"
+    >
   </app-input-field>
 
   <app-input-field 
     [fControl]="getFControl('password')" 
-    [name]="'Password'">
+    [name]="'Password'"
+    [type]="'password'"
+    >
   </app-input-field>
 
   <button mat-raised-button color="primary" class="regular-btn main-btn"
