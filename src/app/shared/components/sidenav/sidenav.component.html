@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport position="end" mode="side">
+    <mat-toolbar>
+      <img [src]="'car.png'" alt="CAR APP">
+    </mat-toolbar>
+    <mat-nav-list>
+      <div (click)="drawer?.close()">
+        <ng-container *ngFor="let item of listRoutes">
+          <a mat-list-item 
+            [routerLink]="[item.route]"
+            routerLinkActive="active"
+            class="menu-item">
+            <mat-icon> {{item.icon}}</mat-icon>
+            {{ item.name }}
+          </a>
+        </ng-container>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

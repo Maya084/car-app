@@ -1,0 +1,11 @@
+<mat-toolbar class="toolbar-menu">
+  <span>{{title}}</span>
+  <div class="menu">
+    <button mat-icon-button (click)="navigationService.toggleDrawer$.next('toggle')">
+      <mat-icon>menu_open</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

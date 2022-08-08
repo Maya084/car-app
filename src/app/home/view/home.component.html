@@ -1,23 +1,5 @@
 <div class="mat-typography mat-app-background app">
-  <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="over" [(opened)]="opened" position="end" >
-        <a *ngFor="let item of listRoutes" class="menu-item"
-        [routerLink]="item.route"
-        ><mat-icon>{{item.img}}</mat-icon> {{item.name}}</a>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <mat-toolbar>
-        <span>Car app</span>
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu_open</mat-icon>
-        </button>
-        <button mat-icon-button (click)="onLogout()">
-          <mat-icon>logout</mat-icon>
-        </button>
-      </mat-toolbar>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  <router-outlet>
-  </router-outlet>
+  <app-sidenav>
+    <router-outlet></router-outlet>
+  </app-sidenav>
 </div>

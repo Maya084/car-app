@@ -8,23 +8,23 @@ export const LOCAL_STORAGE = {
 export const SidenavRoutes: ISidenavItem[] = [
     {
         name: 'Users',
-        route: '/users',
-        img: 'group'
+        route: '/home/users',
+        icon: 'group'
     },
     {
         name: 'Reports',
-        route: '/reports',
-        img: 'content_paste'
+        route: '/home/reports',
+        icon: 'content_paste'
     },
     {
         name: 'Create report',
-        route: '/reports/create',
-        img: 'add_circle_outline'
+        route: '/home/reports/create',
+        icon: 'add_circle_outline'
     },
     {
         name: 'Get estimation',
-        route: '/reports/lookup',
-        img: 'find_in_page'
+        route: '/home/reports/lookup',
+        icon: 'find_in_page'
     },
 ]
 

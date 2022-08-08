@@ -1,0 +1,48 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+.menu-item {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 500;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  & mat-icon {
+    margin-right: 10px;
+    //   width: 25px;
+    //   height: 25px;
+    //   font-size: 25px;
+    //   display: flex;
+    //   align-items: center;
+  }
+
+  &:hover {
+    background-color: #7b1fa2;
+  }
+
+}
+
+:host ::ng-deep {
+
+  & .mat-list-base {
+    padding-top: 0px;
+  }
+
+  & .mat-drawer-backdrop {
+    display: none;
+  }
+
+}

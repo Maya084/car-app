@@ -35,5 +35,5 @@ export interface ICarReport extends ICar {
 export interface ISidenavItem {
     name: string;
     route: string;
-    img: string;
+    icon: string;
 }
