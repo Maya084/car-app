@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavRoutes } from '../../shared/consts';
 import { UserService } from '../../shared/services/user.service';
 
 @Component({
@@ -7,6 +8,10 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  opened: boolean = false;
+  showDrawer = false;
+
+  listRoutes = SidenavRoutes;
 
   constructor(
     private userService: UserService
