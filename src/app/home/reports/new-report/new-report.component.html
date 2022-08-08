@@ -1,5 +1,67 @@
 <app-navbar title="Create new report">
 </app-navbar>
-<p>
-  new-report works!
-</p>
+<form class="main-content" 
+  [formGroup]="newReportForm"
+  (submit)="onSubmit()"
+  >
+  <!-- BRAND NAME -->
+  <app-input-field 
+    name="Brand"
+    [fControl]="getFControl('make')"
+    >
+  </app-input-field>
+
+  <!-- MODEL -->
+  <app-input-field 
+    name="Model"
+    [fControl]="getFControl('model')"
+    >
+  </app-input-field>
+
+  <!-- YEAR -->
+  <app-input-field 
+    name="Year"
+    type="number"
+    [fControl]="getFControl('year')"
+    >
+  </app-input-field>
+
+  <!-- MILEAGE -->
+  <app-input-field 
+    name="Mileage"
+    [fControl]="getFControl('mileage')"
+    type="number"
+    >
+  </app-input-field>
+
+  <!-- LONGITUDE -->
+  <app-input-field 
+    name="Longitude"
+    type="number"
+    [fControl]="getFControl('lng')"
+    >
+  </app-input-field>
+
+  <!-- LATITUDE -->
+  <app-input-field 
+    name="Latitude"
+    type="number"
+    [fControl]="getFControl('lat')"
+    >
+  </app-input-field>
+
+  <!-- PRICE -->
+  <app-input-field 
+    name="Price"
+    type="number"
+    [fControl]="getFControl('price')"
+    >
+  </app-input-field>
+
+  <button mat-raised-button type="submit"
+    class="regular-btn"
+    color="primary">
+    Create New Report
+  </button>
+
+</form>
