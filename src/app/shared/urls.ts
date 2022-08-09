@@ -9,5 +9,6 @@ export const URLS = {
     AUTH: prefix + '/auth',
 
     //reports
-    REPORTS: prefix + '/reports'
+    REPORTS: prefix + '/reports',
+    GET_ESTIMATE: prefix + '/reports/estimate'
 }

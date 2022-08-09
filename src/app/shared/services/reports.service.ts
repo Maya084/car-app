@@ -18,7 +18,7 @@ export class ReportsService {
     private http: HttpClient,
     private alert: AlertService,
     private router: Router
-  ) { 
+  ) {
     this.getAllReports();
   }
 
@@ -39,9 +39,9 @@ export class ReportsService {
     )
   }
 
-  getAllReports(): void{
+  getAllReports(): void {
     this.http.get(URLS.REPORTS).pipe(take(1)).subscribe({
-      next: (reports: any)=>{
+      next: (reports: any) => {
         this.reportsSubc.next(reports);
       },
       error: () => {
@@ -49,6 +49,15 @@ export class ReportsService {
           message: 'An error occured while getting reports!',
           status: 'error'
         });
+      },
+    })
+  }
+
+  getEstimation(formValues: any, cb: (status: boolean, estPrice: number) => void) {
+    this.http.get(URLS.GET_ESTIMATE, { params: formValues }).pipe(take(1)).subscribe({
+      next: (data: any) => { cb(true, data?.price); },
+      error: (_: any) => {
+        cb(false, 0);
       },
     })
   }

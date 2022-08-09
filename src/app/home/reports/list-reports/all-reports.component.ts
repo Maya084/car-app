@@ -16,6 +16,7 @@ export class AllReportsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.reportsService.getAllReports();
   }
 
 }

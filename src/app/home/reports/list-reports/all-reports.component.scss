@@ -1,6 +1,6 @@
 .reports-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   max-width: 1000px;
   margin-inline: auto;
 
@@ -10,6 +10,7 @@
     border-radius: 10px;
     border-width: 10px;
     border-style: solid;
+    height: fit-content;
 
     .car-info {
       padding: 15px;
@@ -63,5 +64,11 @@
 
   .value {
     font-size: 18px;
+  }
+}
+
+:host ::ng-deep {
+  .mat-expansion-panel {
+    box-shadow: none !important;
   }
 }
