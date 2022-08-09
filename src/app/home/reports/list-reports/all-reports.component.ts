@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ReportsService } from '../../../shared/services/reports.service';
 
 @Component({
   selector: 'app-all-reports',
@@ -8,7 +9,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class AllReportsComponent implements OnInit {
 
-  constructor() { }
+  allReports = this.reportsService.reports$;
+
+  constructor(
+    private reportsService:ReportsService
+  ) { }
 
   ngOnInit() {
   }

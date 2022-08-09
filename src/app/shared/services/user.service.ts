@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { isEmpty } from 'lodash';
 import { LOCAL_STORAGE } from '../consts';
 import { ISignIn, ISignUp, IUser } from '../interfaces';
 import { URLS } from '../urls';
@@ -20,7 +19,7 @@ export class UserService {
     private router: Router,
     private alert: AlertService
   ) {
-    this.user = localStorage.getItem(LOCAL_STORAGE.USER_INFO) || {} as any;
+    this.user = JSON.parse(localStorage.getItem(LOCAL_STORAGE.USER_INFO) || '{}') as any;
     this.isLoggedIn = localStorage.getItem(LOCAL_STORAGE.IS_LOGGED_IN) === 'true';
   }
 
@@ -82,7 +81,7 @@ export class UserService {
     this.user = userInfo;
     this.isLoggedIn = true;
     localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'true');
-    localStorage.setItem(LOCAL_STORAGE.USER_INFO, userInfo);
+    localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo));
     this.router.navigateByUrl('/home/reports');
   }
 
@@ -90,7 +89,7 @@ export class UserService {
     this.user = {} as any;
     this.isLoggedIn = false;
     localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'false');
-    localStorage.setItem(LOCAL_STORAGE.USER_INFO, '');
+    localStorage.setItem(LOCAL_STORAGE.USER_INFO, '{}');
     this.router.navigateByUrl('/auth/sign-in');
   }
 
