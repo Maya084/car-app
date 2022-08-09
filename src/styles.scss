@@ -65,6 +65,20 @@ app-home {
   padding: 0 16px 16px !important;
 }
 
+.container {
+  height: calc(100vh - 64px);
+}
+
+.logo-toolbar {
+  gap: 10px;
+  color: #7b1fa2;
+  font-size: 35px;
+
+  .img-svg {
+    height: 50px;
+  }
+}
+
 //******************* REMOVE UP DOWN ARROWS IN INPUT FIELD *******************
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -77,4 +91,3 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-

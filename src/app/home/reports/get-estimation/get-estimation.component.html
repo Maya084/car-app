@@ -1,67 +1,41 @@
 <app-navbar title="Get Estimation">
 </app-navbar>
-<form class="main-content" 
-  [formGroup]="getEstForm"
-  (submit)="onSubmit()"
-  >
-  <!-- BRAND NAME -->
-  <app-input-field 
-    name="Brand"
-    [fControl]="getFControl('make')"
-    >
-  </app-input-field>
+<div class="container">
+  <form class="main-content" [formGroup]="getEstForm" (submit)="onSubmit()">
+    <!-- BRAND NAME -->
+    <app-input-field name="Brand" [fControl]="getFControl('make')">
+    </app-input-field>
 
-  <!-- MODEL -->
-  <app-input-field 
-    name="Model"
-    [fControl]="getFControl('model')"
-    >
-  </app-input-field>
+    <!-- MODEL -->
+    <app-input-field name="Model" [fControl]="getFControl('model')">
+    </app-input-field>
 
-  <!-- YEAR -->
-  <app-input-field 
-    name="Year"
-    type="number"
-    [fControl]="getFControl('year')"
-    >
-  </app-input-field>
+    <!-- YEAR -->
+    <app-input-field name="Year" type="number" [fControl]="getFControl('year')">
+    </app-input-field>
 
-  <!-- MILEAGE -->
-  <app-input-field 
-    name="Mileage"
-    [fControl]="getFControl('mileage')"
-    type="number"
-    >
-  </app-input-field>
+    <!-- MILEAGE -->
+    <app-input-field name="Mileage" [fControl]="getFControl('mileage')" type="number">
+    </app-input-field>
 
-  <!-- LONGITUDE -->
-  <app-input-field 
-    name="Longitude"
-    type="number"
-    [fControl]="getFControl('lng')"
-    >
-  </app-input-field>
+    <!-- LONGITUDE -->
+    <app-input-field name="Longitude" type="number" [fControl]="getFControl('lng')">
+    </app-input-field>
 
-  <!-- LATITUDE -->
-  <app-input-field 
-    name="Latitude"
-    type="number"
-    [fControl]="getFControl('lat')"
-    >
-  </app-input-field>
+    <!-- LATITUDE -->
+    <app-input-field name="Latitude" type="number" [fControl]="getFControl('lat')">
+    </app-input-field>
 
-  <button mat-raised-button type="submit"
-    class="regular-btn"
-    color="primary">
-    Get estimation for the car
-  </button>
+    <button mat-raised-button type="submit" class="regular-btn" color="primary">
+      Get estimation for the car
+    </button>
 
-  <div *ngIf="showDiffMsg">
-    We don't have enough information for these parameters.
-  </div>
-  <div class="price-estimation"
-    *ngIf="showPrice">
-    Our estimation for this car is: {{price}}
-  </div>
+    <div *ngIf="showDiffMsg">
+      We don't have enough information for these parameters.
+    </div>
+    <div class="price-estimation" *ngIf="showPrice">
+      Our estimation for this car is: {{price}}
+    </div>
 
-</form>
+  </form>
+</div>

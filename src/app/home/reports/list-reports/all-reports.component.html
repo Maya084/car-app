@@ -1,54 +1,56 @@
 <app-navbar title="All reports">
 </app-navbar>
-<div class="reports-list">
-  <ng-container *ngFor="let item of (allReports | async)">
-    <div class="report">
-      <div class="car-info">
-        <div class="keyvalue-pair">
-          <span class="key">Brand</span>
-          <span class="value">{{item?.make}}</span>
+<div class="container">
+  <div class="reports-list">
+    <ng-container *ngFor="let item of (allReports | async)">
+      <div class="report">
+        <div class="car-info">
+          <div class="keyvalue-pair">
+            <span class="key">Brand</span>
+            <span class="value">{{item?.make}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Model</span>
+            <span class="value">{{item?.model}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Year</span>
+            <span class="value">{{item?.year}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Location</span>
+            <span class="value">{{item?.lng}}, {{item?.lat}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Mileage</span>
+            <span class="value">{{item?.mileage}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Price</span>
+            <span class="value">{{item?.price}}</span>
+          </div>
         </div>
-        <div class="keyvalue-pair">
-          <span class="key">Model</span>
-          <span class="value">{{item?.model}}</span>
-        </div>
-        <div class="keyvalue-pair">
-          <span class="key">Year</span>
-          <span class="value">{{item?.year}}</span>
-        </div>
-        <div class="keyvalue-pair">
-          <span class="key">Location</span>
-          <span class="value">{{item?.lng}}, {{item?.lat}}</span>
-        </div>
-        <div class="keyvalue-pair">
-          <span class="key">Mileage</span>
-          <span class="value">{{item?.mileage}}</span>
-        </div>
-        <div class="keyvalue-pair">
-          <span class="key">Price</span>
-          <span class="value">{{item?.price}}</span>
-        </div>
-      </div>
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            Created by
-          </mat-expansion-panel-header>
-          <div class="user">
-            <mat-icon>account_circle</mat-icon>
-            <div class="user-info">
-              <div class="detail-user">
-                <span class="key">username</span>
-                <span class="value"> {{item?.user?.username}}</span>
-              </div>
-              <div class="detail-user">
-                <span class="key">first and last name</span>
-                <span class="value"> {{item?.user?.name}} {{item?.user?.lastName}}</span>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Created by
+            </mat-expansion-panel-header>
+            <div class="user">
+              <mat-icon>account_circle</mat-icon>
+              <div class="user-info">
+                <div class="detail-user">
+                  <span class="key">username</span>
+                  <span class="value"> {{item?.user?.username}}</span>
+                </div>
+                <div class="detail-user">
+                  <span class="key">first and last name</span>
+                  <span class="value"> {{item?.user?.name}} {{item?.user?.lastName}}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-  </ng-container>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </ng-container>
+  </div>
 </div>
