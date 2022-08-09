@@ -33,8 +33,6 @@ export class NewReportComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.newReportForm.getRawValue());
-    
     if(this.newReportForm.invalid){
       return;
     }

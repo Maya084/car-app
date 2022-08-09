@@ -18,7 +18,7 @@ export class InputFieldComponent implements OnInit {
   constructor() { }
 
   get formControlType(): 'text' | 'password' | 'number' {
-    return this.type === 'number' || this.type === 'text'
+    return (this.type === 'number' || this.type === 'text')
       ? this.type
       : this.visibility
         ? 'text'
@@ -29,7 +29,7 @@ export class InputFieldComponent implements OnInit {
   }
 
   clearControl(): void {
-    this.fControl.patchValue('');
+    this.fControl.patchValue(null);
   }
 
 }
