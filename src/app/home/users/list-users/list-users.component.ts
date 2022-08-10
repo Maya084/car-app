@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-list-users',
@@ -8,10 +9,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class ListUsersComponent implements OnInit {
 
-  constructor() {
+  allUsers = this.userService.users$;
+
+  constructor(
+    private userService: UserService
+  ) {
   }
 
   ngOnInit() {
+    this.userService.getAllUsers();
   }
 
 }

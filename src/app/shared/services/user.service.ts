@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, take } from 'rxjs';
 import { LOCAL_STORAGE } from '../consts';
 import { ISignIn, ISignUp, IUser } from '../interfaces';
 import { URLS } from '../urls';
@@ -11,6 +12,9 @@ import { AlertService } from './alert.service';
 })
 export class UserService {
 
+  private usersSubc = new BehaviorSubject<IUser[]>({} as any);
+  users$ = this.usersSubc.asObservable();
+
   user!: IUser;
   isLoggedIn!: boolean;
 
@@ -19,6 +23,7 @@ export class UserService {
     private router: Router,
     private alert: AlertService
   ) {
+    this.getAllUsers();
     this.user = JSON.parse(localStorage.getItem(LOCAL_STORAGE.USER_INFO) || '{}') as any;
     this.isLoggedIn = localStorage.getItem(LOCAL_STORAGE.IS_LOGGED_IN) === 'true';
   }
@@ -91,6 +96,22 @@ export class UserService {
     localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'false');
     localStorage.setItem(LOCAL_STORAGE.USER_INFO, '{}');
     this.router.navigateByUrl('/auth/sign-in');
+  }
+
+  getAllUsers() {
+    this.http.get(URLS.AUTH).pipe(take(1)).subscribe(
+      {
+        next: (data: any) => {
+          this.usersSubc.next(data);
+        },
+        error: () => {
+          this.alert.openSnackBar({
+            message: 'An error occured while getting users!',
+            status: 'error'
+          });
+        },
+      }
+    )
   }
 
 }

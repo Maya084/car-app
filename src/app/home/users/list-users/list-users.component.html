@@ -1,5 +1,21 @@
 <app-navbar title="All users">
 </app-navbar>
-<p>
-  list users works!
-</p>
+<div class="container">
+  <div class="users">
+    <ng-container *ngFor="let item of (allUsers | async )  ">
+      <div class="user-link" [routerLink]="'/home/users/'+item?.id">
+        <mat-icon>account_circle</mat-icon>
+        <div class="user-info">
+          <div class="detail-user">
+            <span class="key">username</span>
+            <span class="value"> {{item?.username}}</span>
+          </div>
+          <div class="detail-user">
+            <span class="key">first and last name</span>
+            <span class="value"> {{item?.name}} {{item?.lastName}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
