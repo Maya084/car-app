@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../shared/auth.guard';
+import { ListUsersComponent } from './users/list-users/list-users.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { HomeComponent } from './view/home.component';
 
 const routes: Routes = [
@@ -10,7 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: 'users',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+        component: ListUsersComponent,
+      },
+      {
+        path: 'users/:userID',
+        component: UserProfileComponent
       },
       {
         path: 'reports',
