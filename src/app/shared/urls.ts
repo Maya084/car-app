@@ -10,5 +10,6 @@ export const URLS = {
 
     //reports
     REPORTS: prefix + '/reports',
+    REPORTS_USER: prefix + '/reports/user',
     GET_ESTIMATE: prefix + '/reports/estimate'
 }

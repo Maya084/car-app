@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, take } from 'rxjs';
-import { ICar } from '../interfaces';
+import { BehaviorSubject, Observable, take } from 'rxjs';
+import { ICar, ICarReport } from '../interfaces';
 import { URLS } from '../urls';
 import { AlertService } from './alert.service';
 
@@ -10,6 +10,9 @@ import { AlertService } from './alert.service';
   providedIn: 'root'
 })
 export class ReportsService {
+  getReportsForUser(id: number) {
+    return this.http.get(`${URLS.REPORTS_USER}/${id}`).pipe(take(1));
+  }
 
   private reportsSubc = new BehaviorSubject<any[]>([{}])
   reports$ = this.reportsSubc.asObservable();

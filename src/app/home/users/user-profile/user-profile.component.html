@@ -1,6 +1,10 @@
 <app-navbar title="User profile">
 </app-navbar>
-<p>
-  {{userID}}
-  {{userData | json}}
-</p>
+<div>
+  <div class="user-data">
+    {{userData | json}}
+  </div>
+  <div class="reports">
+    {{reports | json}}
+  </div>
+</div>
