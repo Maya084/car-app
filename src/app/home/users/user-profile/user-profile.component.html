@@ -1,39 +1,55 @@
 <app-navbar title="User profile">
 </app-navbar>
-<div>
+<div class="container user-containter">
   <div class="user-data">
-    {{userData | json}}
+    <mat-icon class="user-img">account_circle</mat-icon>
+    <div class="user-info">
+      <h1 class="value name"> {{userData?.name}} {{userData?.lastName}}</h1>
+      <span class="value username">@{{userData?.username}}</span>
+      <span class="value post-numb">Number of posts: {{reports.length}}</span>
+    </div>
   </div>
-  <div class="reports-list">
-    <ng-container *ngFor="let item of reports">
-      <div class="report">
-        <div class="car-info">
-          <div class="keyvalue-pair">
-            <span class="key">Brand</span>
-            <span class="value">{{item?.make}}</span>
-          </div>
-          <div class="keyvalue-pair">
-            <span class="key">Model</span>
-            <span class="value">{{item?.model}}</span>
-          </div>
-          <div class="keyvalue-pair">
-            <span class="key">Year</span>
-            <span class="value">{{item?.year}}</span>
-          </div>
-          <div class="keyvalue-pair">
-            <span class="key">Location</span>
-            <span class="value">{{item?.lng}}, {{item?.lat}}</span>
-          </div>
-          <div class="keyvalue-pair">
-            <span class="key">Mileage</span>
-            <span class="value">{{item?.mileage}}</span>
-          </div>
-          <div class="keyvalue-pair">
-            <span class="key">Price</span>
-            <span class="value">{{item?.price}}</span>
+  <div class="reports-details">
+    <h1>Reports from user</h1>
+
+    <div class="reports-list" *ngIf="reports.length>0; else sorryBlock">
+      <ng-container *ngFor="let item of reports">
+        <div class="report">
+          <div class="car-info">
+            <div class="keyvalue-pair">
+              <span class="key">Brand</span>
+              <span class="value">{{item?.make}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Model</span>
+              <span class="value">{{item?.model}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Year</span>
+              <span class="value">{{item?.year}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Location</span>
+              <span class="value">{{item?.lng}}, {{item?.lat}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Mileage</span>
+              <span class="value">{{item?.mileage}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Price</span>
+              <span class="value">{{item?.price}}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
+
+    <ng-template #sorryBlock>
+      <p class="sorry-msg">
+        (Un)fortunately this user doesn't have any posts
+      </p>
+    </ng-template>
   </div>
+
 </div>

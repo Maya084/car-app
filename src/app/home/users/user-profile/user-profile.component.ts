@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ICarReport } from '../../../shared/interfaces';
+import { ICarReport, IUser } from '../../../shared/interfaces';
 import { ReportsService } from '../../../shared/services/reports.service';
 import { UserService } from '../../../shared/services/user.service';
 
@@ -14,7 +14,7 @@ import { UserService } from '../../../shared/services/user.service';
 export class UserProfileComponent implements OnInit {
 
   userID!: number;
-  userData = {};
+  userData: IUser = {} as any;
   reports!: ICarReport[];
 
   constructor(

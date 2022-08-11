@@ -1,0 +1,56 @@
+.reports-list {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.user-data {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  width: 260px;
+  background-color: #424242;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 20px;
+
+  & .user-info{
+    display: flex;
+    flex-direction: column;
+
+    & .value{
+      margin-bottom: 20px;
+    }
+
+    & .name{
+      margin-bottom: 0;
+    }
+
+    & .username{
+      color: #bebebe;
+    }
+  }
+}
+
+.reports-details {
+  position: absolute;
+  left: 500px;
+  top: 100px;
+  width: -webkit-fill-available;
+  margin-right: 100px;
+
+  h1{
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+}
+
+.user-img {
+  width: 260px;
+  height: 260px;
+  background-color: #7b1fa2;
+  margin-bottom: 20px;
+  font-size: 260px;
+}
+
+.sorry-msg{
+  padding: 10px;
+}
