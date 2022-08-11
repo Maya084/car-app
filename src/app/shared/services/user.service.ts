@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 import { LOCAL_STORAGE } from '../consts';
 import { ISignIn, ISignUp, IUser } from '../interfaces';
 import { URLS } from '../urls';
@@ -96,6 +96,10 @@ export class UserService {
     localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'false');
     localStorage.setItem(LOCAL_STORAGE.USER_INFO, '{}');
     this.router.navigateByUrl('/auth/sign-in');
+  }
+
+  getUser(id: number): Observable<any> {
+    return this.http.get(`${URLS.AUTH}/${id}`);
   }
 
   getAllUsers() {
