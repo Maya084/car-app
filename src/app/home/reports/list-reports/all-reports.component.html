@@ -40,7 +40,8 @@
               <div class="user-info">
                 <div class="detail-user">
                   <span class="key">username</span>
-                  <span class="value"> {{item?.user?.username}}</span>
+                  <span class="value  username" [routerLink]="'/home/users/'+item?.user?.id">
+                    {{item?.user?.username}}</span>
                 </div>
                 <div class="detail-user">
                   <span class="key">first and last name</span>

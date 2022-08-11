@@ -34,6 +34,10 @@
   .value {
     font-size: 18px;
   }
+
+  & .username:hover{
+    cursor: pointer;
+  }
 }
 
 :host ::ng-deep {
