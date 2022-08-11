@@ -1,37 +1,4 @@
-.reports-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  max-width: 1000px;
-  margin-inline: auto;
 
-  .report {
-    margin: 10px;
-    border-color: #424242;
-    border-radius: 10px;
-    border-width: 10px;
-    border-style: solid;
-    height: fit-content;
-
-    .car-info {
-      padding: 15px;
-    }
-  }
-}
-
-.keyvalue-pair {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-
-  & .key {
-    text-transform: lowercase;
-    color: #bebebe;
-  }
-
-  & .value {
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-}
 
 .user {
   display: flex;

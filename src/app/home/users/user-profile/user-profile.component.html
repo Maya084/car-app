@@ -4,7 +4,36 @@
   <div class="user-data">
     {{userData | json}}
   </div>
-  <div class="reports">
-    {{reports | json}}
+  <div class="reports-list">
+    <ng-container *ngFor="let item of reports">
+      <div class="report">
+        <div class="car-info">
+          <div class="keyvalue-pair">
+            <span class="key">Brand</span>
+            <span class="value">{{item?.make}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Model</span>
+            <span class="value">{{item?.model}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Year</span>
+            <span class="value">{{item?.year}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Location</span>
+            <span class="value">{{item?.lng}}, {{item?.lat}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Mileage</span>
+            <span class="value">{{item?.mileage}}</span>
+          </div>
+          <div class="keyvalue-pair">
+            <span class="key">Price</span>
+            <span class="value">{{item?.price}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
