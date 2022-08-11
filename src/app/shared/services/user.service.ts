@@ -23,7 +23,6 @@ export class UserService {
     private router: Router,
     private alert: AlertService
   ) {
-    this.getAllUsers();
     this.user = JSON.parse(localStorage.getItem(LOCAL_STORAGE.USER_INFO) || '{}') as any;
     this.isLoggedIn = localStorage.getItem(LOCAL_STORAGE.IS_LOGGED_IN) === 'true';
   }
