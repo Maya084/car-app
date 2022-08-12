@@ -6,6 +6,7 @@ import { LOCAL_STORAGE } from '../consts';
 import { ISignIn, ISignUp, IUser } from '../interfaces';
 import { URLS } from '../urls';
 import { AlertService } from './alert.service';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private alert: AlertService
+    private alert: AlertService,
+    private loader: LoadingService
   ) {
     this.user = JSON.parse(localStorage.getItem(LOCAL_STORAGE.USER_INFO) || '{}') as any;
     this.isLoggedIn = localStorage.getItem(LOCAL_STORAGE.IS_LOGGED_IN) === 'true';
@@ -116,5 +118,29 @@ export class UserService {
       }
     )
   }
+
+  uploadImage(file: File) {
+    //form data (body)
+    this.loader.startLoading();
+    let formData = new FormData();
+    formData.append('file', file, file.name);
+
+    this.http.post(URLS.UPLOAD, formData).subscribe({
+      next: (data: any) => {
+        this.loader.stopLoading();
+        this.alert.openSnackBar({
+          message: 'Successfull image upload!',
+        })
+      },
+      error: (err: any) => {
+        this.loader.stopLoading();
+        this.alert.openSnackBar({
+          message: 'Image upload failed!',
+          status: 'error'
+        })
+      },
+    })
+  }
+
 
 }

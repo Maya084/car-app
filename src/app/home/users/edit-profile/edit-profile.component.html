@@ -1,0 +1,9 @@
+<app-navbar title="My profile"></app-navbar>
+<div class="container">
+
+  <button mat-mini-fab type="button" color="primary" class="mat-elevation-z1" (click)="fileInput.click()">
+    <mat-icon class="md-24">file_upload</mat-icon>
+    <input hidden type="file" [accept]="['.png', '.jpg']" id="file" #fileInput (change)="uploadFile($event.target)">
+  </button>
+
+</div>

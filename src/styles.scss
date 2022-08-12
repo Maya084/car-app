@@ -113,6 +113,19 @@ app-home {
   }
 }
 
+.loading-container mat-dialog-container {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+snack-bar-container {
+  font-weight: 600;
+}
+
+.mat-simple-snack-bar-content {
+  font-size: 19px;
+}
+
 //******************* REMOVE UP DOWN ARROWS IN INPUT FIELD *******************
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

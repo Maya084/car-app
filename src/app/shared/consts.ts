@@ -28,5 +28,10 @@ export const SidenavRoutes: ISidenavItem[] = [
         route: '/home/reports/lookup',
         icon: 'find_in_page'
     },
+    {
+        name: 'Edit profile',
+        route: '/home/edit-profile',
+        icon: 'edit'
+    }
 ]
 

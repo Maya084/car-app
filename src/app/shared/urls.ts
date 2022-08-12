@@ -7,6 +7,7 @@ export const URLS = {
     SIGN_IN: prefix + '/auth/signin',
     SIGN_OUT: prefix + '/auth/signout',
     AUTH: prefix + '/auth',
+    UPLOAD: prefix + '/auth/upload',
 
     //reports
     REPORTS: prefix + '/reports',

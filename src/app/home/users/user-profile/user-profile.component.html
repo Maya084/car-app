@@ -6,13 +6,13 @@
     <div class="user-info">
       <h1 class="value name"> {{userData?.name}} {{userData?.lastName}}</h1>
       <span class="value username">@{{userData?.username}}</span>
-      <span class="value post-numb">Number of posts: {{reports.length}}</span>
+      <span class="value post-numb">Number of posts: {{reports?.length ?? 0}}</span>
     </div>
   </div>
   <div class="reports-details">
     <h1>Reports from user</h1>
 
-    <div class="reports-list" *ngIf="reports.length>0; else sorryBlock">
+    <div class="reports-list" *ngIf="reports?.length ?? 0 > 0; else sorryBlock">
       <ng-container *ngFor="let item of reports">
         <div class="report">
           <div class="car-info">
