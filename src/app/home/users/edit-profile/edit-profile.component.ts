@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { findIndex, includes } from 'lodash';
-import { ICarReport } from '../../../shared/interfaces';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { findIndex, includes, isNil, omit } from 'lodash';
+import { ICarReport, IUser } from '../../../shared/interfaces';
 import { ReportsService } from '../../../shared/services/reports.service';
 import { UserService } from '../../../shared/services/user.service';
 import { URLS } from '../../../shared/urls';
@@ -14,18 +15,30 @@ import { URLS } from '../../../shared/urls';
 export class EditProfileComponent implements OnInit {
 
   user = this.userService.user;
+  startValues!: any;
   reports !: ICarReport[];
 
   downloadImgUrl = URLS.UPLOAD;
 
+  editProfileForm = this.fb.group({
+    name: ['', [Validators.minLength(3), Validators.maxLength(32)]],
+    username: ['', [Validators.minLength(3), Validators.maxLength(16)]],
+    lastName: ['', [Validators.minLength(3), Validators.maxLength(32)]],
+    email: ['', [Validators.email, Validators.minLength(6), Validators.maxLength(32)]],
+    password: ['', [Validators.minLength(8)]]
+  })
+
   constructor(
     private userService: UserService,
     private reportsService: ReportsService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
     this.user.subscribe(currUser => {
+      this.editProfileForm.patchValue(currUser);
+      this.startValues = currUser;
       this.reportsService.getReportsForUser(currUser.id).subscribe(
         (data: any) => {
           this.reports = data;
@@ -67,6 +80,27 @@ export class EditProfileComponent implements OnInit {
     }
 
     this.reportsService.deleteReport(reportId, callback);
+  }
+
+  getFControl(name: string): FormControl {
+    return this.editProfileForm.get(name) as FormControl;
+  }
+
+  onEdit(): void {
+    let formValues = this.editProfileForm.getRawValue();
+
+    for (const key in formValues) {
+      if (this.startValues[key] == formValues[key] || isNil(formValues[key]) || formValues[key] == '') {
+        formValues = omit(formValues, key);
+      }
+    }
+
+    const callback = (status: boolean) => {
+      if (status) { return; }
+      this.editProfileForm.patchValue(this.startValues);
+    }
+
+    this.userService.editUserInfo(formValues, callback);
   }
 
 }

@@ -6,10 +6,32 @@
     <ng-template #profileImage>
       <img class="user-img" [src]="downloadImgUrl+'/'+(user|async)?.profileImage">
     </ng-template>
-    <button mat-mini-fab type="button" color="primary" class="mat-elevation-z1" (click)="fileInput.click()">
+    <button mat-mini-fab type="button" color="primary" class="mat-elevation-z1 upload-btn" (click)="fileInput.click()">
       <mat-icon class="md-24">file_upload</mat-icon>
       <input hidden type="file" [accept]="['.png', '.jpg']" id="file" #fileInput (change)="uploadFile($event.target)">
     </button>
+
+    <form class="form-control" [formGroup]="editProfileForm">
+      <app-input-field [fControl]="getFControl('name')" [name]="'Name'">
+      </app-input-field>
+
+      <app-input-field [fControl]="getFControl('lastName')" [name]="'Last Name'">
+      </app-input-field>
+
+      <app-input-field [fControl]="getFControl('username')" [name]="'Username'">
+      </app-input-field>
+
+      <app-input-field [fControl]="getFControl('email')" [name]="'Email'">
+      </app-input-field>
+
+      <app-input-field [fControl]="getFControl('password')" type="password" [name]="'Password'">
+      </app-input-field>
+
+      <button mat-raised-button color="primary" class="edit-btn" type="submit"
+        (click)="onEdit()"
+        [disabled]="!editProfileForm.dirty"
+      >Edit</button>
+    </form>
   </div>
   <div class="reports-details">
     <h1>My reports</h1>

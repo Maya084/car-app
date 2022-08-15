@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 import { LOCAL_STORAGE } from '../consts';
 import { ISignIn, ISignUp, IUser } from '../interfaces';
 import { URLS } from '../urls';
@@ -145,5 +145,23 @@ export class UserService {
     })
   }
 
+  editUserInfo(userInfo: Partial<IUser>, cb: (status: boolean) => void) {
+    this.http.patch(`${URLS.AUTH}/${this.currentUserSubc.value.id}`, userInfo).subscribe({
+      next: (editedUser: any) => {
+        this.currentUserSubc.next(editedUser);
+        this.alert.openSnackBar({
+          message: "Profile successfully updated!",
+          status: 'success'
+        })
+      },
+      error: () => {
+        this.alert.openSnackBar({
+          message: "Profile wasn't updated!",
+          status: 'error'
+        });
+        cb(false);
+      },
+    });
+  }
 
 }
