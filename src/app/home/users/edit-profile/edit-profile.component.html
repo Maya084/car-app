@@ -1,9 +1,59 @@
 <app-navbar title="My profile"></app-navbar>
+
 <div class="container">
+  <div class="user-picture">
+    <mat-icon class="user-img">account_circle</mat-icon>
+    <button mat-mini-fab type="button" color="primary" class="mat-elevation-z1" (click)="fileInput.click()">
+      <mat-icon class="md-24">file_upload</mat-icon>
+      <input hidden type="file" [accept]="['.png', '.jpg']" id="file" #fileInput (change)="uploadFile($event.target)">
+    </button>
+  </div>
+  <div class="reports-details">
+    <h1>My reports</h1>
+    <div class="reports-list" *ngIf="reports?.length ?? 0 > 0; else elseBlock">
+      <ng-container *ngFor="let item of reports">
+        <div class="report">
+          <div class="car-info">
+            <div class="keyvalue-pair">
+              <span class="key">Brand</span>
+              <span class="value">{{item?.make}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Model</span>
+              <span class="value">{{item?.model}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Year</span>
+              <span class="value">{{item?.year}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Location</span>
+              <span class="value">{{item?.lng}}, {{item?.lat}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Mileage</span>
+              <span class="value">{{item?.mileage}}</span>
+            </div>
+            <div class="keyvalue-pair">
+              <span class="key">Price</span>
+              <span class="value">{{item?.price}}</span>
+            </div>
+          </div>
+          <div class="delete-btn">
+            <button mat-mini-fab type="button" color="primary" class="mat-elevation-z1" (click)="deleteReport()">
+              <mat-icon class="md-24">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #elseBlock>
+      <div class="no-posts-msg">
+        You don't have any posts yet. <a routerLink="/home/reports/create">Create new report.</a>
+      </div>
+    </ng-template>
 
-  <button mat-mini-fab type="button" color="primary" class="mat-elevation-z1" (click)="fileInput.click()">
-    <mat-icon class="md-24">file_upload</mat-icon>
-    <input hidden type="file" [accept]="['.png', '.jpg']" id="file" #fileInput (change)="uploadFile($event.target)">
-  </button>
 
+
+  </div>
 </div>
