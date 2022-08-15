@@ -55,7 +55,9 @@ export class AlertService {
         config.callback();
       }
       else {
-        config?.callbackClose();
+        if (config?.callbackClose) {
+          config?.callbackClose();
+        }
       }
     })
   }
