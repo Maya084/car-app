@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 import { LOCAL_STORAGE } from '../consts';
 import { ISignIn, ISignUp, IUser } from '../interfaces';
 import { URLS } from '../urls';
@@ -16,7 +16,8 @@ export class UserService {
   private usersSubc = new BehaviorSubject<IUser[]>({} as any);
   users$ = this.usersSubc.asObservable();
 
-  user!: IUser;
+  private currentUserSubc = new BehaviorSubject<IUser>({} as any);
+  user = this.currentUserSubc.asObservable();
   isLoggedIn!: boolean;
 
   constructor(
@@ -25,7 +26,7 @@ export class UserService {
     private alert: AlertService,
     private loader: LoadingService
   ) {
-    this.user = JSON.parse(localStorage.getItem(LOCAL_STORAGE.USER_INFO) || '{}') as any;
+    this.currentUserSubc.next(JSON.parse(localStorage.getItem(LOCAL_STORAGE.USER_INFO) || '{}') as any);
     this.isLoggedIn = localStorage.getItem(LOCAL_STORAGE.IS_LOGGED_IN) === 'true';
   }
 
@@ -84,7 +85,7 @@ export class UserService {
   }
 
   signInAndChangeRoute(userInfo: any): void {
-    this.user = userInfo;
+    this.currentUserSubc.next(userInfo);
     this.isLoggedIn = true;
     localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'true');
     localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo));
@@ -92,7 +93,7 @@ export class UserService {
   }
 
   signOutAndChangeRoute(): void {
-    this.user = {} as any;
+    this.currentUserSubc.next({} as any);
     this.isLoggedIn = false;
     localStorage.setItem(LOCAL_STORAGE.IS_LOGGED_IN, 'false');
     localStorage.setItem(LOCAL_STORAGE.USER_INFO, '{}');
@@ -128,6 +129,8 @@ export class UserService {
     this.http.post(URLS.UPLOAD, formData).subscribe({
       next: (data: any) => {
         this.loader.stopLoading();
+        this.currentUserSubc.next({ ...this.currentUserSubc.value, ...data });
+        this.user = { ...this.user, ...data };
         this.alert.openSnackBar({
           message: 'Successfull image upload!',
         })

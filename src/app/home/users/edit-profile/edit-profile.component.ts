@@ -3,6 +3,7 @@ import { includes } from 'lodash';
 import { ICarReport } from '../../../shared/interfaces';
 import { ReportsService } from '../../../shared/services/reports.service';
 import { UserService } from '../../../shared/services/user.service';
+import { URLS } from '../../../shared/urls';
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,6 +16,8 @@ export class EditProfileComponent implements OnInit {
   user = this.userService.user;
   reports !: ICarReport[];
 
+  downloadImgUrl = URLS.UPLOAD;
+
   constructor(
     private userService: UserService,
     private reportsService: ReportsService,
@@ -22,12 +25,15 @@ export class EditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.reportsService.getReportsForUser(this.user.id).subscribe(
-      (data: any) => {
-        this.reports = data;
-        this.cdr.markForCheck();
-      }
-    );
+    this.user.subscribe(currUser => {
+      this.reportsService.getReportsForUser(currUser.id).subscribe(
+        (data: any) => {
+          this.reports = data;
+          this.cdr.markForCheck();
+        }
+      );
+    })
+
   }
 
   uploadFile(target: any): void {
@@ -48,8 +54,8 @@ export class EditProfileComponent implements OnInit {
     target!.value = null;
   }
 
-  deleteReport(): void{
-    
+  deleteReport(): void {
+
   }
 
 }

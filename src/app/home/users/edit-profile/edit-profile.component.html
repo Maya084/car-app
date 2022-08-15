@@ -2,7 +2,10 @@
 
 <div class="container">
   <div class="user-picture">
-    <mat-icon class="user-img">account_circle</mat-icon>
+    <!-- <mat-icon *ngIf="!(user|async)?.profileImage; else profileImage" class="user-img">account_circle</mat-icon> -->
+    <!-- <ng-template #profileImage> -->
+      <img class="user-img" [src]="downloadImgUrl+'/'+(user|async)?.profileImage">
+    <!-- </ng-template> -->
     <button mat-mini-fab type="button" color="primary" class="mat-elevation-z1" (click)="fileInput.click()">
       <mat-icon class="md-24">file_upload</mat-icon>
       <input hidden type="file" [accept]="['.png', '.jpg']" id="file" #fileInput (change)="uploadFile($event.target)">

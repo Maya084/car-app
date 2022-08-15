@@ -12,7 +12,8 @@ export interface ISignUp extends ISignIn {
 export interface IUser extends ISignUp {
     id: number;
     admin: boolean;
-    reports?: ICarReport
+    reports?: ICarReport,
+    profileImage?: string;
 }
 
 export interface IApprove {
