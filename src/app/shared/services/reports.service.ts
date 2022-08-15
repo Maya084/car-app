@@ -67,21 +67,30 @@ export class ReportsService {
   }
 
   deleteReport(reportId: number, cb: (deleted: boolean) => void) {
-    this.http.delete(`${URLS.REPORTS}/${reportId}`).subscribe({
-      next: () => {
-        this.alert.openSnackBar({
-          message: "The report was successfully deleted.",
-          status: 'success',
-        });
-        cb(true)
-      },
-      error: () => {
-        this.alert.openSnackBar({
-          message: "An error occurred while deleting the report! Please try again.",
-          status: 'error',
-        });
-        cb(false)
-      },
+    const callback = () => {
+      this.http.delete(`${URLS.REPORTS}/${reportId}`).subscribe({
+        next: () => {
+          this.alert.openSnackBar({
+            message: "The report was successfully deleted.",
+            status: 'success',
+          });
+          cb(true)
+        },
+        error: () => {
+          this.alert.openSnackBar({
+            message: "An error occurred while deleting the report! Please try again.",
+            status: 'error',
+          });
+          cb(false)
+        },
+      })
+    }
+    this.alert.openConfirmationDialog({
+      message: 'Are you sure you want to remove this report?',
+      title: 'Delete report',
+      callback
     });
+
+
   }
 }

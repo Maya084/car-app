@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from "../material.module";
+import { ConfirmationDialogComponent } from "./components/dialog/dialog.component";
 import { InputFieldComponent } from "./components/input-field/input-field.component";
 import { LoaderComponent } from "./components/loader/loader.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
@@ -12,7 +13,8 @@ const compDec = [
     InputFieldComponent,
     SidenavComponent,
     NavbarComponent,
-    LoaderComponent
+    LoaderComponent,
+    ConfirmationDialogComponent
 ]
 
 const modDec = [
