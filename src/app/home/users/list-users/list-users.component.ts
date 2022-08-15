@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UserService } from '../../../shared/services/user.service';
+import { URLS } from '../../../shared/urls';
 
 @Component({
   selector: 'app-list-users',
@@ -10,6 +11,7 @@ import { UserService } from '../../../shared/services/user.service';
 export class ListUsersComponent implements OnInit {
 
   allUsers = this.userService.users$;
+  downloadImgUrl = URLS.UPLOAD;
 
   constructor(
     private userService: UserService

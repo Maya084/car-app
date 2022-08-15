@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ICarReport, IUser } from '../../../shared/interfaces';
 import { ReportsService } from '../../../shared/services/reports.service';
 import { UserService } from '../../../shared/services/user.service';
+import { URLS } from '../../../shared/urls';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   userID!: number;
   userData: IUser = {} as any;
   reports!: ICarReport[];
+  downloadImgUrl = URLS.UPLOAD;
 
   constructor(
     private activatedRoute: ActivatedRoute,

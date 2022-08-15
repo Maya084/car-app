@@ -4,7 +4,10 @@
   <div class="users">
     <ng-container *ngFor="let item of (allUsers | async )  ">
       <div class="user-link" [routerLink]="'/home/users/'+item?.id">
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon *ngIf="!item?.profileImage; else profileImage" class="user-prof-pic">account_circle</mat-icon>
+        <ng-template #profileImage>
+          <img class="user-prof-pic" [src]="downloadImgUrl+'/'+item?.profileImage">
+        </ng-template>
         <div class="user-info">
           <div class="detail-user">
             <span class="key">username</span>

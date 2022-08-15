@@ -2,7 +2,10 @@
 </app-navbar>
 <div class="container user-containter">
   <div class="user-data">
-    <mat-icon class="user-img">account_circle</mat-icon>
+    <mat-icon *ngIf="!userData?.profileImage; else profileImage" class="user-img">account_circle</mat-icon>
+    <ng-template #profileImage>
+      <img class="user-img" [src]="downloadImgUrl+'/'+userData?.profileImage">
+    </ng-template>
     <div class="user-info">
       <h1 class="value name"> {{userData?.name}} {{userData?.lastName}}</h1>
       <span class="value username">@{{userData?.username}}</span>

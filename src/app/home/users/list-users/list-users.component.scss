@@ -15,14 +15,6 @@
     cursor: pointer;
   }
 
-  mat-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 45px;
-    display: flex;
-    align-items: center;
-  }
-
 }
 
 .user-info,
@@ -42,4 +34,13 @@
   .value {
     font-size: 18px;
   }
+}
+
+.user-prof-pic {
+  width: 55px;
+  height: 55px;
+  font-size: 45px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
 }
