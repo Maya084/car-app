@@ -10,6 +10,7 @@ import { AlertService } from './alert.service';
   providedIn: 'root'
 })
 export class ReportsService {
+
   getReportsForUser(id: number) {
     return this.http.get(`${URLS.REPORTS_USER}/${id}`).pipe(take(1));
   }
@@ -63,5 +64,24 @@ export class ReportsService {
         cb(false, 0);
       },
     })
+  }
+
+  deleteReport(reportId: number, cb: (deleted: boolean) => void) {
+    this.http.delete(`${URLS.REPORTS}/${reportId}`).subscribe({
+      next: () => {
+        this.alert.openSnackBar({
+          message: "The report was successfully deleted.",
+          status: 'success',
+        });
+        cb(true)
+      },
+      error: () => {
+        this.alert.openSnackBar({
+          message: "An error occurred while deleting the report! Please try again.",
+          status: 'error',
+        });
+        cb(false)
+      },
+    });
   }
 }

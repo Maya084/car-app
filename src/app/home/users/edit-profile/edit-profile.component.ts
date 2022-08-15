@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { includes } from 'lodash';
+import { findIndex, includes } from 'lodash';
 import { ICarReport } from '../../../shared/interfaces';
 import { ReportsService } from '../../../shared/services/reports.service';
 import { UserService } from '../../../shared/services/user.service';
@@ -54,8 +54,19 @@ export class EditProfileComponent implements OnInit {
     target!.value = null;
   }
 
-  deleteReport(): void {
+  deleteReport(reportId?: number): void {
+    if (!reportId) {
+      return;
+    }
 
+    const callback = (deleted: boolean) => {
+      if (!deleted) { return }
+      const indx = findIndex(this.reports, el => el.id == reportId);
+      this.reports.splice(indx, 1);
+      this.cdr.markForCheck();
+    }
+
+    this.reportsService.deleteReport(reportId, callback);
   }
 
 }

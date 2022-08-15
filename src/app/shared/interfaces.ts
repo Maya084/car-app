@@ -31,6 +31,7 @@ export interface ICar {
 
 export interface ICarReport extends ICar {
     price: number;
+    id: number;
 }
 
 export interface ISidenavItem {
