@@ -152,7 +152,8 @@ export class UserService {
         this.alert.openSnackBar({
           message: "Profile successfully updated!",
           status: 'success'
-        })
+        });
+        cb(true);
       },
       error: () => {
         this.alert.openSnackBar({

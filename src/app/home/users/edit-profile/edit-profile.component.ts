@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { findIndex, includes, isNil, omit } from 'lodash';
+import { findIndex, has, includes, isNil, omit } from 'lodash';
+import { LOCAL_STORAGE } from '../../../shared/consts';
 import { ICarReport, IUser } from '../../../shared/interfaces';
 import { ReportsService } from '../../../shared/services/reports.service';
 import { UserService } from '../../../shared/services/user.service';
@@ -38,6 +39,7 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
     this.user.subscribe(currUser => {
       this.editProfileForm.patchValue(currUser);
+      localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(currUser));
       this.startValues = currUser;
       this.reportsService.getReportsForUser(currUser.id).subscribe(
         (data: any) => {
@@ -96,7 +98,11 @@ export class EditProfileComponent implements OnInit {
     }
 
     const callback = (status: boolean) => {
-      if (status) { return; }
+      if (status) {
+        this.editProfileForm.patchValue({ password: '' });
+        this.editProfileForm.markAsPristine();
+        return;
+      }
       this.editProfileForm.patchValue(this.startValues);
     }
 
