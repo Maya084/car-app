@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  --dark-color: #7b1fa2;
+  --light-color: #a349c9;
+}
+
+#darkGroup {
+  fill: var(--dark-color);
+}
+
+#lightGroup {
+  fill: var(--light-color);
+}
+
 html,
 body {
   height: 100%;

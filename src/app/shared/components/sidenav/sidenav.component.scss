@@ -41,3 +41,33 @@ mat-sidenav {
   }
 
 }
+
+//logo animation
+#dark1,
+#dark2,
+#light1 {
+  transition: all 1s ease;
+}
+
+
+svg {
+  #dark2 {
+    transform: translateX(-100%);
+  }
+
+  &:hover {
+    #light1 {
+      transform: translateX(20%);
+    }
+
+    #dark1 {
+      transform: translateX(40%);
+      opacity: 0;
+    }
+
+    #dark2 {
+      transform: translate(0%);
+    }
+  }
+
+}
