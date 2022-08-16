@@ -18,6 +18,7 @@ export class UserService {
 
   private currentUserSubc = new BehaviorSubject<IUser>({} as any);
   user = this.currentUserSubc.asObservable();
+
   isLoggedIn!: boolean;
 
   constructor(
@@ -130,7 +131,6 @@ export class UserService {
       next: (data: any) => {
         this.loader.stopLoading();
         this.currentUserSubc.next({ ...this.currentUserSubc.value, ...data });
-        this.user = { ...this.user, ...data };
         this.alert.openSnackBar({
           message: 'Successfull image upload!',
         })

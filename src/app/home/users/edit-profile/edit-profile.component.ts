@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { findIndex, has, includes, isNil, omit } from 'lodash';
-import { LOCAL_STORAGE } from '../../../shared/consts';
-import { ICarReport, IUser } from '../../../shared/interfaces';
+import { findIndex, includes, isNil, omit } from 'lodash';
+import { ICarReport } from '../../../shared/interfaces';
 import { ReportsService } from '../../../shared/services/reports.service';
 import { UserService } from '../../../shared/services/user.service';
 import { URLS } from '../../../shared/urls';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-edit-profile',
@@ -37,9 +37,8 @@ export class EditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user.subscribe(currUser => {
+    this.user.pipe(take(1)).subscribe(currUser => {
       this.editProfileForm.patchValue(currUser);
-      localStorage.setItem(LOCAL_STORAGE.USER_INFO, JSON.stringify(currUser));
       this.startValues = currUser;
       this.reportsService.getReportsForUser(currUser.id).subscribe(
         (data: any) => {
