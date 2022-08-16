@@ -1,7 +1,7 @@
 <app-navbar title="All users">
 </app-navbar>
 <div class="container">
-  <div class="users">
+  <div class="users animationX">
     <ng-container *ngFor="let item of (allUsers | async )  ">
       <div class="user-link" [routerLink]="'/home/users/'+item?.id">
         <mat-icon *ngIf="!item?.profileImage; else profileImage" class="user-prof-pic">account_circle</mat-icon>

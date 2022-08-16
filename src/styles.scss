@@ -74,6 +74,13 @@ app-home {
   padding: 0 !important;
 }
 
+mat-toolbar {
+  position: sticky;
+  position: -webkit-sticky; // For macOS/iOS Safari
+  top: 0;
+  z-index: 1000;
+}
+
 .main-content {
   max-width: 450px;
   margin-inline: auto;
@@ -145,6 +152,43 @@ snack-bar-container {
 
 .mat-simple-snack-bar-content {
   font-size: 19px;
+}
+
+//************************************************************
+//************************************************************
+//*****************************animations*********************
+//************************************************************
+//************************************************************
+.animationX {
+  animation: fadeInLeft 1s;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+.animationY {
+  animation: fadeInUp 1s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 //******************* REMOVE UP DOWN ARROWS IN INPUT FIELD *******************

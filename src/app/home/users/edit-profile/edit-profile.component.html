@@ -1,7 +1,7 @@
 <app-navbar title="My profile"></app-navbar>
 
 <div class="container">
-  <div class="user-picture">
+  <div class="user-picture animationY">
     <mat-icon *ngIf="!(user|async)?.profileImage; else profileImage" class="user-img">account_circle</mat-icon>
     <ng-template #profileImage>
       <img class="user-img" [src]="downloadImgUrl+'/'+(user|async)?.profileImage">
@@ -33,7 +33,7 @@
       >Edit</button>
     </form>
   </div>
-  <div class="reports-details">
+  <div class="reports-details animationX">
     <h1>My reports</h1>
     <div class="reports-list" *ngIf="reports?.length ?? 0 > 0; else elseBlock">
       <ng-container *ngFor="let item of reports">
