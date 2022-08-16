@@ -1,4 +1,4 @@
-$sidenavSize: 60px;
+$sidenavSize: 75px;
 
 .example-container {
   position: absolute;
@@ -12,30 +12,18 @@ mat-sidenav {
   width: $sidenavSize;
 }
 
-.menu-item {
-  color: #fff;
-  text-decoration: none;
-  padding: 10px;
-  font-weight: 500;
-
-  display: flex;
-  gap: 10px;
-  align-items: center;
-
-  & mat-icon {
-    margin-right: 10px;
-  }
-
-  &:hover {
-    background-color: #7b1fa2;
-  }
-
+.menu-item:hover {
+  background-color: var(--primary-color);
 }
 
 .list-actions {
   position: relative;
   top: 40%;
   transform: translateY(-50%);
+
+  a {
+    height: 75px;
+  }
 }
 
 :host ::ng-deep {
@@ -48,9 +36,12 @@ mat-sidenav {
     display: none;
   }
 
+  .mat-list-item-content {
+    display: flex;
+    justify-content: center;
+  }
+
 }
-
-
 
 //logo animation
 #dark1,
