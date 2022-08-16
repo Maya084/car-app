@@ -33,12 +33,13 @@ export class SidenavComponent implements OnInit {
     this.userService.signOut();
   }
 
-  onChangeColors():void{
-    const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple'];
-    const rando = () => colors[Math.floor(Math.random()*colors.length)];
+  onChangeColors(): void {
+    const darkColors = ['#6709A0', '#051B69', '#4B1A9A', '#26494D', '#2E6B6B', '#33805B', '#7b1fa2'];
+    const lightColors = ['#A4C76D', '#81B95F', '#60A954', '#FFC4BD', '#EC7FB3', '#AC45BD', '#FFCDC7', '#a349c9'];
+    const rando = (colors: string[]) => colors[Math.floor(Math.random() * colors.length)];
     document.documentElement.style.cssText = `
-    --dark-color: ${rando()};
-    --light-color: ${rando()};
+    --dark-color: ${rando(darkColors)};
+    --light-color: ${rando(lightColors)};
     `
   }
 
