@@ -13,7 +13,7 @@ import { LoadingService } from './loading.service';
 })
 export class UserService {
 
-  private usersSubc = new BehaviorSubject<IUser[]>({} as any);
+  private usersSubc = new BehaviorSubject<IUser[]>([{}] as any);
   users$ = this.usersSubc.asObservable();
 
   private currentUserSubc = new BehaviorSubject<IUser>({} as any);
