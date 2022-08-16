@@ -1,16 +1,8 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport position="start" mode="side">
+  <mat-sidenav #drawer class="sidenav" [opened]="true" position="start" mode="side">
     <mat-toolbar class="logo-toolbar">
-      <!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="60.000000px" height="50.000000px"
-        viewBox="0 0 60.000000 50.000000" preserveAspectRatio="xMidYMid meet">
-        <g xmlns="http://www.w3.org/2000/svg" stroke="none" fill="#7b1fa2"
-          transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)">
-          <path
-            d="M134 472 c-6 -4 -24 -39 -39 -79 -19 -49 -35 -74 -52 -82 -22 -10 -23 -16 -23 -106 0 -87 2 -95 19 -95 16 0 20 -8 23 -42 3 -39 6 -43 32 -46 34 -4 46 10 46 56 l0 32 160 0 160 0 0 -32 c0 -46 12 -60 46 -56 26 3 29 7 32 45 3 35 7 43 23 43 17 0 19 8 19 95 0 90 -1 96 -23 106 -17 8 -33 33 -52 82 -15 40 -33 75 -39 79 -6 4 -81 8 -166 8 -85 0 -160 -4 -166 -8z m328 -62 c10 -19 19 -46 20 -60 l3 -25 -179 -3 c-99 -1 -183 1 -188 6 -9 9 15 84 35 110 7 9 46 12 151 10 l141 -3 17 -35z m-334 -136 c42 -29 19 -78 -35 -72 -23 2 -29 9 -31 33 -3 19 2 33 14 42 22 16 25 16 52 -3z m396 3 c12 -9 17 -23 14 -42 -2 -25 -8 -31 -33 -33 -19 -3 -33 2 -42 14 -17 24 -17 30 7 54 24 24 30 24 54 7z" />
-        </g>
-      </svg> -->
-
-      <svg (click)="onChangeColors()" width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg (click)="onChangeColors()" width="120px" height="100px" viewBox="0 0 120 100" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <g id="cars">
           <g id="lightGroup">
             <path id="light1"
@@ -25,17 +17,17 @@
         </g>
       </svg>
 
-      <span class="car-app-title">CarApp</span>
     </mat-toolbar>
-    <mat-nav-list>
-      <div (click)="drawer?.close()">
-        <ng-container *ngFor="let item of listRoutes">
-          <a mat-list-item [routerLink]="[item.route]" routerLinkActive="active" class="menu-item">
-            <mat-icon> {{item.icon}}</mat-icon>
-            {{ item.name }}
-          </a>
-        </ng-container>
-      </div>
+    <mat-nav-list class="list-actions">
+      <ng-container *ngFor="let item of listRoutes">
+        <a mat-list-item [routerLink]="[item.route]" routerLinkActive="active" class="menu-item">
+          <mat-icon> {{item.icon}}</mat-icon>
+          <!-- {{ item.name }} -->
+        </a>
+      </ng-container>
+      <a mat-list-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

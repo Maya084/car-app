@@ -1,3 +1,5 @@
+$sidenavSize: 60px;
+
 .example-container {
   position: absolute;
   top: 0;
@@ -7,7 +9,7 @@
 }
 
 mat-sidenav {
-  width: 250px;
+  width: $sidenavSize;
 }
 
 .menu-item {
@@ -30,6 +32,12 @@ mat-sidenav {
 
 }
 
+.list-actions {
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
 :host ::ng-deep {
 
   & .mat-list-base {
@@ -41,6 +49,8 @@ mat-sidenav {
   }
 
 }
+
+
 
 //logo animation
 #dark1,

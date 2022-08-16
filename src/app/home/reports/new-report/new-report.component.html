@@ -1,16 +1,18 @@
 <app-navbar title="Create new report">
 </app-navbar>
-<form class="main-content" 
+<div class="container">
+
+  <form class="main-content" 
   [formGroup]="newReportForm"
   (submit)="onSubmit()"
   >
   <!-- BRAND NAME -->
   <app-input-field 
-    name="Brand"
-    [fControl]="getFControl('make')"
+  name="Brand"
+  [fControl]="getFControl('make')"
     >
   </app-input-field>
-
+  
   <!-- MODEL -->
   <app-input-field 
     name="Model"
@@ -25,7 +27,7 @@
     [fControl]="getFControl('year')"
     >
   </app-input-field>
-
+  
   <!-- MILEAGE -->
   <app-input-field 
     name="Mileage"
@@ -33,35 +35,37 @@
     type="number"
     >
   </app-input-field>
-
+  
   <!-- LONGITUDE -->
   <app-input-field 
-    name="Longitude"
-    type="number"
-    [fControl]="getFControl('lng')"
-    >
+  name="Longitude"
+  type="number"
+  [fControl]="getFControl('lng')"
+  >
   </app-input-field>
 
   <!-- LATITUDE -->
   <app-input-field 
-    name="Latitude"
-    type="number"
-    [fControl]="getFControl('lat')"
-    >
+  name="Latitude"
+  type="number"
+  [fControl]="getFControl('lat')"
+  >
   </app-input-field>
 
   <!-- PRICE -->
   <app-input-field 
-    name="Price"
-    type="number"
-    [fControl]="getFControl('price')"
-    >
-  </app-input-field>
+  name="Price"
+  type="number"
+  [fControl]="getFControl('price')"
+  >
+    </app-input-field>
 
-  <button mat-raised-button type="submit"
+    <button mat-raised-button type="submit"
     class="regular-btn"
     color="primary">
     Create New Report
   </button>
 
 </form>
+
+</div>
