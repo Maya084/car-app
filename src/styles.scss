@@ -191,6 +191,17 @@ snack-bar-container {
   }
 }
 
+.spacer{
+  // aspect-ratio: 960/250;
+  aspect-ratio: 960/100;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  // background-image: url('./assets/img/wave.svg');
+  background-image: url('./assets/img/wave960100.svg');
+}
+
 //******************* REMOVE UP DOWN ARROWS IN INPUT FIELD *******************
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

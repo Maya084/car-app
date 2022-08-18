@@ -1,38 +1,44 @@
-<form [formGroup]="signUpValues" class="form-group">
-  <app-input-field 
-    [fControl]="getFControl('name')" 
-    [name]="'Name'">
-  </app-input-field>
+<div class="spacer"></div>
+<div class="container">
 
-  <app-input-field 
-    [fControl]="getFControl('lastName')" 
-    [name]="'Last Name'">
-  </app-input-field>
+  <form [formGroup]="signUpValues" class="form-group animationY">
+    <app-input-field 
+      [fControl]="getFControl('name')" 
+      [name]="'Name'">
+    </app-input-field>
+    
+    <app-input-field 
+      [fControl]="getFControl('lastName')" 
+      [name]="'Last Name'">
+    </app-input-field>
 
-  <app-input-field 
-    [fControl]="getFControl('username')" 
-    [name]="'Username'">
-  </app-input-field>
+    <app-input-field 
+      [fControl]="getFControl('username')" 
+      [name]="'Username'">
+    </app-input-field>
+    
+    <app-input-field 
+      [fControl]="getFControl('email')" 
+      [name]="'Email'">
+    </app-input-field>
 
-  <app-input-field 
-    [fControl]="getFControl('email')" 
-    [name]="'Email'">
-  </app-input-field>
+    <app-input-field 
+      [fControl]="getFControl('password')" 
+      type="password"
+      [name]="'Password'">
+      </app-input-field>
 
-  <app-input-field 
-    [fControl]="getFControl('password')" 
-    type="password"
-    [name]="'Password'">
-  </app-input-field>
+    <button mat-raised-button color="primary" class="regular-btn"
+      (click)="onSignUp()">
+      Sign Up
+    </button>
+      
+    <button mat-raised-button class="regular-btn"
+      [routerLink]="'/auth/sign-in'">
+      Sign In
+    </button>
 
-  <button mat-raised-button color="primary" class="regular-btn"
-    (click)="onSignUp()">
-    Sign Up
-  </button>
-  <button mat-raised-button class="regular-btn"
-    [routerLink]="'/auth/sign-in'">
-    Sign In
-  </button>
+  </form>
 
-</form>
 
+</div>
